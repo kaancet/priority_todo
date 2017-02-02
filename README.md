@@ -6,7 +6,7 @@ I realized that I was more efficient in planning my day-to-day tasks when I prio
 
 I still need to add functionality to the Clear Button but I just wanted to create the repository for now.
 
-### To-DO
-*Add function to Clear Button.
-*Add save/load properties
-*Create a standalone exe
+### To-Do
+* Add function to Clear Button.
+* Add save/load properties
+* Create a standalone exe
