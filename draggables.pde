@@ -23,6 +23,7 @@ class NullDraggableObject implements Draggable
 class todoItem implements Draggable
 {
   String label;
+  int remain;
   float x,y,w,h;
   boolean drag;
   float dragX, dragY;
@@ -30,21 +31,34 @@ class todoItem implements Draggable
   float centerx;
   float centery;
   int inZone;
+  coordinates place=new coordinates();
   
-  todoItem(String inlabel, int itemnoin)
+  todoItem(String inlabel, int inremain, int itemnoin, int zone)
   {
     itemno=itemnoin;
     label=inlabel;
-    x=20;
+    inZone=zone;
+    remain=inremain;
     w=200;
     h=60;
-    y=80+(itemno)*(h+10); //<>//
+    if(inZone==0)
+    {
+      x=20;
+      y=80+(noInZone(0))*(h+10); //<>//
+    }
+    else
+    {
+      place=put2Zone(inZone,zoneArr,w,h,itemno);
+      x=place.coorx;
+      y=place.coory;
+    }
+
     drag=false;
     dragX=0;
     dragY=0;
     centerx=x+w/2;
     centery=y+h/2;
-    inZone=0;
+
   }
   
   boolean isMouseHover()
@@ -78,17 +92,11 @@ class todoItem implements Draggable
     {
       line(x+8,y+18,x+textWidth(label)+5,y+18);
     }
-    int dayy=day();
-    String d=String.valueOf(dayy);
-    int monthh=month();
-    String m=String.valueOf(monthh);
-    int yearr=year();
-    String yy=String.valueOf(yearr);
-    String slash="/";
-    String date=d+slash+m+slash+yy;
-    textSize(16);
+   
     fill(201, 32, 32);
-    text(date,x+10,y+h/2+15);
+    
+    String r_text=String.valueOf(remain)+" hours remain";
+    text(r_text,x+10,y+h/2+15);
     
   }
   
@@ -116,5 +124,4 @@ class todoItem implements Draggable
    drag = false;
    println(inZone);
  }
-
 }

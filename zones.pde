@@ -44,7 +44,7 @@ MinReturn getMinVal(double[] arr)
   double arrmin=500;
   for(int i=0; i<arr.length; i++)
   {
-    if(arr[i]<arrmin) //<>//
+    if(arr[i]<arrmin)
     {
       arrmin=arr[i];
       returnval.index=i+1;
@@ -65,4 +65,53 @@ class MinReturn
     index=0;
     MinVal=0;
   }
+}
+
+
+int noInZone(int zoneNo)
+{
+  int itemAmount=0;
+  todoItem temp;
+  for(int i=0; i<todos.size(); i++)
+  {
+    temp = (todoItem)todos.get(i);
+    if(temp.inZone==0)
+    {
+      itemAmount++;
+    }
+  }
+  return itemAmount;
+}
+
+
+coordinates put2Zone(int zoneno, int[][] zonearr, float wid, float hid, int item)
+{
+  float zonex = zonearr[zoneno][0];
+  float zoney = zonearr[zoneno][1];
+   coordinates coords = new coordinates();
+  
+  zonex=zonex-wid/2;
+  zoney=zoney-100+item*(hid+8);
+  
+  coords.setCoords(zonex,zoney);
+  return coords;
+}
+
+class coordinates
+{
+  float coorx;
+  float coory;
+  
+  coordinates()
+  {
+    coorx=0;
+    coory=0;
+  }
+  
+  void setCoords(float incoorx, float incoory)
+  {
+    coorx=incoorx;
+    coory=incoory;
+  }
+  
 }
